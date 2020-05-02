@@ -1,4 +1,4 @@
-# Awtrix2-Docker 
+# Awtrix2-Docker
 Official Docker Container for Awtrix2 Server in collaboration with Blueforcer.
 
 The Container is based on the anapsix/alpine-java:8_JDK image.
@@ -11,4 +11,4 @@ sudo docker run --name AwTriX2 -p 7000:7000 -p 7001:7001 --restart always -e TZ=
 
 # For persistent Data add:
 
--v <pwd>:/data
+-v pwd:/data
