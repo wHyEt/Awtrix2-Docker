@@ -3,7 +3,7 @@ Official Docker Container for Awtrix2 Host in collaboration with Blueforcer.
 
 The Container is based on the anapsix/alpine-java:8_JDK image.
 
-It has an autoupdate feature witch will get the latest Server from the Awtrix Site on a restart from the Container.
+It has an autoupdate feature witch will get the latest Host from the Awtrix Site on a restart from the Container.
 
 # Getting Started
 
