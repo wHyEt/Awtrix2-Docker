@@ -8,7 +8,7 @@ It has an autoupdate feature witch will get the latest Host from the Awtrix Site
 # Getting Started
 
 ```shell
-sudo docker run --name AwTriX2 -p 7000:7000 -p 7001:7001 --restart always -e TZ=Europe/Berlin whyet/awtrix2:latest-arm
+docker run --name AwTriX2 -p 7000:7000 -p 7001:7001 --restart always -e TZ=Europe/Berlin whyet/awtrix2:latest-arm
 ```
 
 # For persistent Data add:
