@@ -1,5 +1,5 @@
 # Awtrix2-Docker
-Official Docker Container for Awtrix2 Host in collaboration with Blueforcer.
+Official Docker Container for [Awtrix2](https://blueforcer.de/2019/01/04/awtrix-2-0/) Host in collaboration with Blueforcer.
 
 The Container is based on the anapsix/alpine-java:8_JDK image.
 
