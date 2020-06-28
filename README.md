@@ -10,6 +10,9 @@ It has an autoupdate feature witch will get the latest Host from the Awtrix Site
 ```shell
 docker run --name AwTriX2 -p 7000:7000 -p 7001:7001 -p 5568:5568/udp --restart always -e TZ=Europe/Berlin whyet/awtrix2:latest
 ```
+# Additional Ports:
+
+-p 80:80  For Amazon Alexa Support you need this Port. If This Port is already used this can be changed in the config file. 
 
 # For persistent Data add:
 
