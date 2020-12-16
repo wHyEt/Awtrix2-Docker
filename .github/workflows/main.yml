@@ -1,0 +1,104 @@
+name: Workflow for Images
+
+env:
+  DOCKERHUB_TAG: "whyet/awtrix2"
+  DOCKERHUB_SHORT_DESCRIPTION: "This is the Official Multiplatform Docker Container for Awtrix2 Server in collaboration with Blueforcer."
+  DOCKERHUB_README_FILE: "README.md"
+
+on:
+  push:
+    branches:
+      - master
+
+
+jobs:
+  main:
+    name: Build & Push Docker Images
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - arch: "amd64"
+            platform: "linux/amd64"
+            from: "anapsix/alpine-java:8_jdk"
+          - arch: "arm64"
+            platform: "linux/arm64"
+            from: "arm64v8/openjdk"
+          - arch: "armv7"
+            platform: "linux/arm/v7"
+            from: "armv7/armhf-java8"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ env.DOCKERHUB_TAG }}:${{ matrix.arch }}-latest
+          build-args: CI_FROM=${{ matrix.from }}
+          platforms: ${{ matrix.platform }}
+
+      - name: Image digests
+        run: |
+          echo image digest: ${{ steps.docker_build.outputs.digest }}
+  manifest:
+    needs: main
+    name: Build & Push Multiarch Manifest
+    runs-on: ubuntu-latest
+    env:
+      DOCKER_CLI_EXPERIMENTAL: enabled
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_PASSWORD }}
+
+      - name: Create Docker manifest
+        run: |
+          docker manifest create \
+          ${{ env.DOCKERHUB_TAG }}:latest \
+          --amend ${{ env.DOCKERHUB_TAG }}:amd64-latest \
+          --amend ${{ env.DOCKERHUB_TAG }}:arm64-latest \
+          --amend ${{ env.DOCKERHUB_TAG }}:armv7-latest
+      - name: Push manifest to Docker Hub
+        run: |
+          docker manifest push ${{ env.DOCKERHUB_TAG }}:latest
+  pushreadme:
+    runs-on: ubuntu-latest
+    name: Push README to Docker Hub
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v2
+      - name: push README to Dockerhub
+        uses: christian-korneck/update-container-description-action@v1
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_HUB_USERNAME }}
+          DOCKER_PASS: ${{ secrets.DOCKER_HUB_PASSWORD }}
+        with:
+          destination_container_repo: ${{ env.DOCKERHUB_TAG }}
+          provider: dockerhub
+          short_description: ${{ env.DOCKERHUB_SHORT_DESCRIPTION }}
+          readme_file: ${{ env.DOCKERHUB_README_FILE }}

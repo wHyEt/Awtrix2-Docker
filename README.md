@@ -5,6 +5,8 @@ The Container is based on the anapsix/alpine-java:8_JDK image.
 
 It has an autoupdate feature witch will get the latest Host from the Awtrix Site on a restart from the Container.
 
+Thx to foorschtbar its now MultiPlatform
+
 # Beta Version
 
 if you want to use the beta version set:
