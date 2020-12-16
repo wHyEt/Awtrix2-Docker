@@ -15,6 +15,5 @@ EXPOSE 7000 7001
 
 # Set entrypoint
 COPY ./assets/entrypoint.sh /entrypoint.sh
-#RUN wget https://blueforcer.de/awtrix/stable/awtrix.jar -O /data/awtrix.jar
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
