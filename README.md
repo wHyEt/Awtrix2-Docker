@@ -78,7 +78,7 @@ And `DE` is your two-letter country code. (see [ISO 3166-1 alpha-2](https://en.w
 
 # Awtrix Premium Users
 
-If you want to use Premium please mount the host interface adrresss to the container with:
+If you want to use Premium please mount the host interface address to the container with:
 
 ```shell
 -v /sys/class/net/<your interface>/address:/data/hostmac
