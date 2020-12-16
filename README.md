@@ -12,7 +12,7 @@ Thx to foorschtbar its now MultiPlatform
 if you want to use the beta version set:
 
 ```shell
--e AWTRIX_BETA=false -e AUTOUPDATE=true
+-e AWTRIX_BETA=true -e AUTOUPDATE=true
 ```
 
 # AUTOUPDATE
