@@ -1,11 +1,13 @@
 FROM    anapsix/alpine-java:8_jdk
-RUN mkdir -p /containerdata/
-RUN touch /containerdata/docker-entrypoint.sh
-RUN echo "#!/bin/bash" > /containerdata/docker-entrypoint.sh
-RUN echo "wget https://blueforcer.de/awtrix/stable/awtrix.jar -O /data/awtrix.jar" >> /containerdata/docker-entrypoint.sh
-RUN echo "java -jar /data/awtrix.jar" >> /containerdata/docker-entrypoint.sh
-RUN ["chmod", "+x", "/containerdata/docker-entrypoint.sh"]
-VOLUME ["/containerdata"]
+
+# Output target platform
+ARG TARGETPLATFORM
+RUN echo "Building for ARCH $TARGETPLATFORM"
+
 WORKDIR /data
 EXPOSE 7000 7001
-ENTRYPOINT ["/containerdata/docker-entrypoint.sh"]
+
+# Set entrypoint
+COPY ./assets/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT [ "/entrypoint.sh" ]

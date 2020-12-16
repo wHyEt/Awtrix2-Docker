@@ -8,8 +8,34 @@ It has an autoupdate feature witch will get the latest Host from the Awtrix Site
 # Getting Started
 
 ```shell
-docker run --name AwTriX2 -p 7000:7000 -p 7001:7001 -p 5568:5568/udp --restart always -e TZ=Europe/Berlin whyet/awtrix2:latest
+docker run --name AwTriX2 -p 7000:7000 -p 7001:7001 -p 5568:5568/udp --restart always -e TZ=Europe/Berlin -e AWTRIX_BETA=false whyet/awtrix2:latest 
 ```
+
+# Docker Compose
+
+Please don't forget to add your host interface in volumes:
+
+```shell
+version: "3"
+
+services:
+  awtrix:
+    image: whyet/awtrix2
+    restart: unless-stopped
+    ports:
+      - "7000:7000"
+      - "7001:7001"
+      - "5568:5568"
+   
+    volumes:
+      - ./data:/data
+      - /sys/class/net/<your interface>/address:/data/hostmac
+    environment:
+      - TZ=Europe/Berlin
+      - JAVA_TOOL_OPTIONS="-Duser.language=de -Duser.country=DE"
+      - AWTRIX_BETA=false
+```
+
 # Additional Ports:
 
 -p 80:80  For Amazon Alexa Support you need this Port. If This Port is already used this can be changed in the config file. 
@@ -31,9 +57,15 @@ If you want AWTRIX to automatically display some apps like **DayOfTheWeek** in y
 Where `de` is your two-letter language code. (see [ISO 639-2](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes))  
 And `DE` is your two-letter country code. (see [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2))
 
-# IMPORTANT for Awtrix Premium Users
+# Awtrix Premium Users
 
-If you have Awtrix Premium Please run the Docker Container in Hostmode, since a rebuild of the Container is triggering a change in the hardware ID. Or deactivate the Premium license in the Interface before rebuilding.
+If you want to use Premium please mount the host interface adrresss to the container with:
+
+```shell
+-v /sys/class/net/<your interface>/address:/data/hostmac
+```
+
+or run the container in host mode:
 
 ```shell
 --network host
