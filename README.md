@@ -5,10 +5,19 @@ The Container is based on the anapsix/alpine-java:8_JDK image.
 
 It has an autoupdate feature witch will get the latest Host from the Awtrix Site on a restart from the Container.
 
+# AUTOUPDATE
+
+You can Disable autoupdate bei setting:
+
+
+```shell
+-e AUTOUPDATE=false 
+```
+
 # Getting Started
 
 ```shell
-docker run --name AwTriX2 -p 7000:7000 -p 7001:7001 -p 5568:5568/udp --restart always -e TZ=Europe/Berlin -e AWTRIX_BETA=false whyet/awtrix2:latest 
+docker run --name AwTriX2 -p 7000:7000 -p 7001:7001 -p 5568:5568/udp --restart always -e TZ=Europe/Berlin -e AWTRIX_BETA=false -e AUTOUPDATE=true whyet/awtrix2:latest 
 ```
 
 # Docker Compose
@@ -34,6 +43,7 @@ services:
       - TZ=Europe/Berlin
       - JAVA_TOOL_OPTIONS="-Duser.language=de -Duser.country=DE"
       - AWTRIX_BETA=false
+      - AUTOUPDATE=true
 ```
 
 # Additional Ports:
