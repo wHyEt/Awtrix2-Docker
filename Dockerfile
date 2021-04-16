@@ -15,9 +15,8 @@ WORKDIR /data
 EXPOSE 7000 7001
 
 # Check Platform 
-COPY ./assets/platform.sh /platform.sh
-RUN chmod +x /platform.sh
-RUN /platform.sh "$TARGETPLATFORM"
+COPY ./assets/platform.sh /tmp/platform.sh
+RUN chmod a+x /tmp/platform.sh && /tmp/platform.sh "$TARGETPLATFORM"
 
 # Set entrypoint
 COPY ./assets/entrypoint.sh /entrypoint.sh
