@@ -5,10 +5,6 @@ set -e
 AWTRIX_BETA=${AWTRIX_BETA:-false}
 AUTOUPDATE=${AUTOUPDATE:-true}
 
-if [ "$TARGETPLATFORM" = "linux/arm64" ] ; then 
-apk --no-cache add wget
-fi
-
 
 if [ "$AUTOUPDATE" = true ] ; then
     if [ "$AWTRIX_BETA" = true ] ; then
