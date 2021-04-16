@@ -9,7 +9,6 @@ RUN echo "Set FROM to $CI_FROM"
 # Output target platform
 ARG TARGETPLATFORM
 RUN echo "Building for ARCH $TARGETPLATFORM"
-RUN if [ "$TARGETPLATFORM" == "arm64" ]; then RUN apk --no-cache add curl;
 
 
 WORKDIR /data
