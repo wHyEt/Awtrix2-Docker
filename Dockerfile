@@ -10,10 +10,6 @@ RUN echo "Set FROM to $CI_FROM"
 ARG TARGETPLATFORM
 RUN echo "Building for ARCH $TARGETPLATFORM"
 
-# Check Platform 
-COPY ./assets/platform.sh /tmp/platform.sh
-RUN chmod a+x /tmp/platform.sh && /tmp/platform.sh "$TARGETPLATFORM"
-
 WORKDIR /data
 EXPOSE 7000 7001
 # Set entrypoint
