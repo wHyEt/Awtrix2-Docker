@@ -5,8 +5,8 @@ set -e
 AWTRIX_BETA=${AWTRIX_BETA:-false}
 AUTOUPDATE=${AUTOUPDATE:-true}
 
-if [ "$TARGETPLATFORM" = "arm64" ] ; then 
-apt-get update && apt-get install wget
+if [ "$TARGETPLATFORM" = "linux/arm64" ] ; then 
+apk --no-cache add wget
 fi
 
 
