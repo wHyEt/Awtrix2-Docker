@@ -14,6 +14,11 @@ RUN echo "Building for ARCH $TARGETPLATFORM"
 WORKDIR /data
 EXPOSE 7000 7001
 
+# Check Platform 
+COPY ./assets/platform.sh /platform.sh
+RUN chmod +x /platform.sh
+RUN /platform.sh $TARGETPLATFORM
+
 # Set entrypoint
 COPY ./assets/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
