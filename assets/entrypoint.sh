@@ -14,7 +14,7 @@ if [ "$AUTOUPDATE" = true ] ; then
     else    
         AWTRIX_DL_URL=https://blueforcer.de/awtrix/stable/awtrix.jar      
     fi
-
+echo $TARGETPLATFORM
 wget $AWTRIX_DL_URL -O /data/awtrix.jar
 fi
 
