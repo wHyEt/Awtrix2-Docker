@@ -15,7 +15,7 @@ if [ "$AUTOUPDATE" = true ] ; then
         AWTRIX_DL_URL=https://blueforcer.de/awtrix/stable/awtrix.jar      
     fi
     
-if [ "$WGET_ALPINE_UPDATE" = true] ; then
+if [ "$WGET_ALPINE_UPDATE" = true ] ; then
 apk update
 apk add wget
 WGET_ALPINE_UPDATE = false
