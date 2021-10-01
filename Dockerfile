@@ -10,9 +10,12 @@ RUN echo "Set FROM to $CI_FROM"
 ARG TARGETPLATFORM
 RUN echo "Building for ARCH $TARGETPLATFORM"
 
+
 WORKDIR /data
 EXPOSE 7000 7001
+
+RUN apk update && apk add wget
 # Set entrypoint
-COPY ./assets/entrypoint.sh /entrypoint.sh
+COPY ./assets/entrypoint.sh /entrypoint.s
 RUN chmod +x /entrypoint.sh
 ENTRYPOINT [ "/entrypoint.sh" ]
