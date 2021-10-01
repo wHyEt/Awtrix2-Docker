@@ -15,7 +15,7 @@ if [ "$AUTOUPDATE" = true ] ; then
         AWTRIX_DL_URL=https://blueforcer.de/awtrix/stable/awtrix.jar      
     fi
 
-wget --no-check-certificate $AWTRIX_DL_URL -O /data/awtrix.jar
+wget $AWTRIX_DL_URL -O /data/awtrix.jar
 fi
 
 java -jar /data/awtrix.jar
