@@ -1,6 +1,6 @@
 # Arch will be changed while building from GitHub Actions CI Workflow
 # anapsix/alpine-java:8_jdk
-# armv7/armhf-java8
+# openjdk/8-jdk-alpine
 # arm64v8/openjdk
 
 ARG CI_FROM=null
