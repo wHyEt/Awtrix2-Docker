@@ -4,21 +4,7 @@ set -e
 
 AWTRIX_BETA=${AWTRIX_BETA:-false}
 AUTOUPDATE=${AUTOUPDATE:-true}
-WGET_ALPINE_UPDATE=${WGET_ALPINE_UPDATE:-false}
-WGET_DEBIAN_UPDATE=${WGET_DEBIAN_UPDATE:-false}
 
-if [ "$WGET_ALPINE_UPDATE" = true ] ; then
-apk update
-apk add wget
-WGET_ALPINE_UPDATE=false
-fi
-
-if [ "$WGET_DEBIAN_UPDATE" = true ] ; then
-apt-get update
-update-ca-certificates
-apt-get install wget
-WGET_DEBIAN_UPDATE=false
-fi
 
 if [ "$AUTOUPDATE" = true ] ; then
     if [ "$AWTRIX_BETA" = true ] ; then
