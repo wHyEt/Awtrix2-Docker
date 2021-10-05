@@ -20,7 +20,7 @@ jobs:
         include:
           - arch: "amd64"
             platform: "linux/amd64"
-            from: "anapsix/alpine-java:8_jdk"
+            from: "openjdk:8-jdk-alpine"
           - arch: "arm64"
             platform: "linux/arm64"
             from: "arm64v8/openjdk:buster"
