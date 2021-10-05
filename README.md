@@ -90,6 +90,16 @@ or run the container in host mode:
 --network host
 ```
 
+# WGET Certifcate Error
+
+If you run in this issue the only two solutions at the moment are on existing containers deactivate Autoupdate.
+Or on certain platforms you can set the the following ENVs:
+
+```shell
+-e WGET_ALPINE_UPDATE = true 
+-e AUTOUPDATE = true
+```
+
 # Support for Creating Docker Containers ;)
 
 <a href="https://www.buymeacoffee.com/TechNic" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 13px !important;width: 55px !important;" ></a>
