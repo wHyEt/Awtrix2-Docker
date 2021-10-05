@@ -15,6 +15,7 @@ fi
 
 if [ "$WGET_DEBIAN_UPDATE" = true ] ; then
 apt-get update
+update-ca-certificates
 apt-get install wget
 WGET_DEBIAN_UPDATE=false
 fi
