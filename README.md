@@ -95,10 +95,19 @@ or run the container in host mode:
 If you run in this issue the only two solutions at the moment are on existing containers deactivate Autoupdate.
 Or on certain platforms you can set the the following ENVs:
 
+
 ```shell
 -e WGET_ALPINE_UPDATE = true 
 -e AUTOUPDATE = true
 ```
+
+Raspi4 platform:
+
+```shell
+-e WGET_DEBIAN_UPDATE = true 
+-e AUTOUPDATE = true
+```
+
 
 # Support for Creating Docker Containers ;)
 
