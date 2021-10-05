@@ -26,7 +26,7 @@ jobs:
             from: "arm64v8/openjdk:buster"
           - arch: "armv7"
             platform: "linux/arm/v7"
-            from: "openjdk/8-jdk-alpine"
+            from: "openjdk:8-jdk-alpine"
 
     steps:
       - name: Checkout
